@@ -1,8 +1,8 @@
-# Welcome to your Lovable project
+# Cook My Fridge
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/3f741ecc-2b09-4315-8eea-35e88ba2dd90
+**Lovable URL**: https://lovable.dev/projects/3f741ecc-2b09-4315-8eea-35e88ba2dd90
 
 ## How can I edit this code?
 
