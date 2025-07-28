@@ -47,7 +47,7 @@ ${recipe.steps.map((step, index) => `${index + 1}. ${step}`).join('\n')}
   };
 
   return (
-    <Card className="h-fit bg-gradient-to-br from-card to-background shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-warm)] transition-all duration-200">
+    <Card className="h-fit bg-gradient-to-br from-card to-background shadow-[var(--shadow-soft)] hover:shadow-[var(--shadow-cool)] transition-all duration-200">
       <CardHeader className="pb-3">
         <div className="flex items-start justify-between gap-2">
           <CardTitle className="text-lg font-semibold leading-tight">

@@ -1,3 +1,5 @@
+import groceryPattern from '@/assets/grocery-pattern.png';
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ArrowLeft, RefreshCw, ChefHat } from "lucide-react";
@@ -14,8 +16,18 @@ interface RecipeResultsProps {
 export function RecipeResults({ recipes, isLoading, onBack, onRegenerate }: RecipeResultsProps) {
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-background to-muted flex items-center justify-center p-4">
-        <Card className="p-8 text-center max-w-md mx-auto shadow-[var(--shadow-warm)]">
+      <div className="min-h-screen bg-[var(--bg-pattern)] relative overflow-hidden flex items-center justify-center p-4">
+        {/* Background Pattern */}
+        <div 
+          className="absolute inset-0 opacity-3"
+          style={{
+            backgroundImage: `url(${groceryPattern})`,
+            backgroundSize: '600px 400px',
+            backgroundRepeat: 'repeat',
+            backgroundPosition: 'center'
+          }}
+        />
+        <Card className="relative z-10 p-8 text-center max-w-md mx-auto shadow-[var(--shadow-cool)]">
           <CardContent className="space-y-4">
             <div className="flex justify-center">
               <ChefHat className="h-12 w-12 text-primary animate-pulse" />
@@ -36,7 +48,19 @@ export function RecipeResults({ recipes, isLoading, onBack, onRegenerate }: Reci
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted p-4">
+    <div className="min-h-screen bg-[var(--bg-pattern)] relative overflow-hidden">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-3"
+        style={{
+          backgroundImage: `url(${groceryPattern})`,
+          backgroundSize: '600px 400px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'center'
+        }}
+      />
+      
+      <div className="relative z-10 p-4">
       <div className="max-w-6xl mx-auto space-y-6 pt-4">
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
@@ -87,6 +111,7 @@ export function RecipeResults({ recipes, isLoading, onBack, onRegenerate }: Reci
             </CardContent>
           </Card>
         )}
+      </div>
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+import groceryPattern from '@/assets/grocery-pattern.png';
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -38,103 +40,116 @@ export function IngredientInput({ onSubmit, isLoading }: IngredientInputProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted p-4">
-      <div className="max-w-2xl mx-auto space-y-8 pt-8">
-        {/* Header */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-2 text-primary">
-            <ChefHat className="h-8 w-8" />
-            <h1 className="text-4xl font-bold">Cook my Fridge</h1>
+    <div className="min-h-screen bg-[var(--bg-pattern)] relative overflow-hidden">
+      {/* Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-5"
+        style={{
+          backgroundImage: `url(${groceryPattern})`,
+          backgroundSize: '600px 400px',
+          backgroundRepeat: 'repeat',
+          backgroundPosition: 'center'
+        }}
+      />
+      
+      <div className="relative z-10 p-4">
+        <div className="max-w-2xl mx-auto space-y-8 pt-8">
+          {/* Header */}
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-2 text-primary">
+              <ChefHat className="h-8 w-8" />
+              <h1 className="text-4xl font-bold">Cook my Fridge</h1>
+            </div>
+            <p className="text-lg text-muted-foreground">
+              Turn your leftover ingredients into delicious recipes
+            </p>
           </div>
-          <p className="text-lg text-muted-foreground">
-            Turn your leftover ingredients into delicious recipes
-          </p>
-        </div>
 
-        {/* Main Input Card */}
-        <Card className="p-6 shadow-[var(--shadow-warm)] bg-gradient-to-br from-card to-background">
-          <div className="space-y-6">
-            {/* Ingredients Input */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium flex items-center gap-2">
-                <Utensils className="h-4 w-4 text-primary" />
-                What's in your fridge?
-              </label>
-              <Textarea
-                placeholder="Type or paste what's in your fridge... e.g. 2 chicken breasts, spinach, feta cheese, pasta"
-                value={ingredients}
-                onChange={(e) => setIngredients(e.target.value)}
-                className="min-h-24 text-base resize-none bg-background/50"
-              />
-            </div>
-
-            {/* Quick Add Chips */}
-            <div className="space-y-3">
-              <label className="text-sm font-medium text-muted-foreground">
-                Quick add:
-              </label>
-              <div className="flex flex-wrap gap-2">
-                {quickAddIngredients.map((ingredient) => (
-                  <Badge
-                    key={ingredient}
-                    variant="secondary"
-                    className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-                    onClick={() => addQuickIngredient(ingredient)}
-                  >
-                    + {ingredient}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Filters Row */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              {/* Dietary Preference */}
-              <div className="space-y-2">
-                <label className="text-sm font-medium">Dietary preference</label>
-                <Select value={diet} onValueChange={(value: DietaryPreference) => setDiet(value)}>
-                  <SelectTrigger className="bg-background/50">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="None">None</SelectItem>
-                    <SelectItem value="Vegetarian">Vegetarian</SelectItem>
-                    <SelectItem value="Vegan">Vegan</SelectItem>
-                    <SelectItem value="Gluten-Free">Gluten-Free</SelectItem>
-                    <SelectItem value="High-Protein">High-Protein</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Max Cook Time */}
-              <div className="space-y-2">
+          {/* Main Input Card */}
+          <Card className="p-6 shadow-[var(--shadow-cool)] bg-gradient-to-br from-card to-background">
+            <div className="space-y-6">
+              {/* Ingredients Input */}
+              <div className="space-y-3">
                 <label className="text-sm font-medium flex items-center gap-2">
-                  <Clock className="h-4 w-4 text-primary" />
-                  Max cook time
+                  <Utensils className="h-4 w-4 text-primary" />
+                  What's in your fridge?
                 </label>
-                <Select value={maxTime} onValueChange={(value: MaxCookTime) => setMaxTime(value)}>
-                  <SelectTrigger className="bg-background/50">
-                    <SelectValue />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="15">15 minutes</SelectItem>
-                    <SelectItem value="30">30 minutes</SelectItem>
-                    <SelectItem value="45">45 minutes</SelectItem>
-                  </SelectContent>
-                </Select>
+                <Textarea
+                  placeholder="Type or paste what's in your fridge... e.g. 2 chicken breasts, spinach, feta cheese, pasta"
+                  value={ingredients}
+                  onChange={(e) => setIngredients(e.target.value)}
+                  className="min-h-24 text-base resize-none bg-background/50"
+                />
               </div>
-            </div>
 
-            {/* Submit Button */}
-            <Button 
-              onClick={handleSubmit}
-              disabled={!ingredients.trim() || isLoading}
-              className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-warm)] transition-all duration-200"
-            >
-              {isLoading ? "Cooking up recipes..." : "Find Recipes"}
-            </Button>
-          </div>
-        </Card>
+              {/* Quick Add Chips */}
+              <div className="space-y-3">
+                <label className="text-sm font-medium text-muted-foreground">
+                  Quick add:
+                </label>
+                <div className="flex flex-wrap gap-2">
+                  {quickAddIngredients.map((ingredient) => (
+                    <Badge
+                      key={ingredient}
+                      variant="secondary"
+                      className="cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => addQuickIngredient(ingredient)}
+                    >
+                      + {ingredient}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              {/* Filters Row */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {/* Dietary Preference */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Dietary preference</label>
+                  <Select value={diet} onValueChange={(value: DietaryPreference) => setDiet(value)}>
+                    <SelectTrigger className="bg-background/50">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="None">None</SelectItem>
+                      <SelectItem value="Vegetarian">Vegetarian</SelectItem>
+                      <SelectItem value="Vegan">Vegan</SelectItem>
+                      <SelectItem value="Gluten-Free">Gluten-Free</SelectItem>
+                      <SelectItem value="High-Protein">High-Protein</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                {/* Max Cook Time */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium flex items-center gap-2">
+                    <Clock className="h-4 w-4 text-primary" />
+                    Max cook time
+                  </label>
+                  <Select value={maxTime} onValueChange={(value: MaxCookTime) => setMaxTime(value)}>
+                    <SelectTrigger className="bg-background/50">
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="15">15 minutes</SelectItem>
+                      <SelectItem value="30">30 minutes</SelectItem>
+                      <SelectItem value="45">45 minutes</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              {/* Submit Button */}
+              <Button 
+                onClick={handleSubmit}
+                disabled={!ingredients.trim() || isLoading}
+                className="w-full h-12 text-lg font-semibold bg-gradient-to-r from-primary to-accent hover:shadow-[var(--shadow-cool)] transition-all duration-200"
+              >
+                {isLoading ? "Cooking up recipes..." : "Find Recipes"}
+              </Button>
+            </div>
+          </Card>
+        </div>
       </div>
     </div>
   );
