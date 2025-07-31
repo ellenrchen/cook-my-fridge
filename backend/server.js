@@ -76,8 +76,17 @@ Requirements:
 - Each recipe should use at least some of the provided ingredients
 - Include creative combinations and cooking methods
 - Make recipes practical and achievable
+- Include detailed cooking instructions with specific temperatures and heat levels
+- You may assume the user has standard seasonings and spices in their pantry, but do not assume they have any specific ingredients.
 
 IMPORTANT: Respond with ONLY a valid JSON array. No explanatory text before or after.
+
+For cooking instructions, be specific about:
+- Oven temperatures (e.g., "Preheat oven to 375°F")
+- Pan heat levels (e.g., "medium-high heat", "low heat")
+- Cooking times for each step
+- Internal temperatures for meat/poultry when applicable
+- Visual cues for doneness
 
 JSON format (respond with this exact structure):
 [
@@ -87,7 +96,7 @@ JSON format (respond with this exact structure):
     "calories_estimate": 300,
     "short_description": "Brief description",
     "ingredients_list": ["ingredient 1", "ingredient 2"],
-    "steps": ["step 1", "step 2"]
+    "steps": ["step 1 with specific temperature/heat", "step 2 with cooking details"]
   }
 ]
 
@@ -190,3 +199,4 @@ app.listen(PORT, () => {
     console.log("✅ OpenAI API key configured");
   }
 });
+
